@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.title }} — БеседкаБ{% endblock %}
+
+{% block description %}
+    {{ product.short_description|default:product.title }}
+{% endblock %}
+
+{% block content %}
+
+<section class="section product-detail-section">
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="{% url 'home' %}">Главная</a>
+            <span>/</span>
+
+            {% if product.kind == "gazebo" %}
+                <a href="{% url 'gazebos' %}">Беседки</a>
+            {% else %}
+                <a href="{% url 'enclosures' %}">Вольеры</a>
+            {% endif %}
+
+            <span>/</span>
+            <span>{{ product.title }}</span>
+        </div>
+
+        <div class="product-detail-grid">
+            <div class="product-gallery">
+                <div class="main-product-image">
+                    {% if product.main_image %}
+                        <img
+                            id="mainProductImage"
+                            src="{{ product.main_image.image.url }}"
+                            alt="{{ product.title }}"
+                        >
+                    {% else %}
+                        <div class="image-placeholder">
+                            Фотография модели пока не добавлена
+                        </div>
+                    {% endif %}
+                </div>
+
+                {% if product.images.count > 1 %}
+                    <div class="product-thumbnails">
+                        {% for image in product.images.all %}
+                            <button
+                                type="button"
+                                class="thumbnail-button"
+                                data-image="{{ image.image.url }}"
+                            >
+                                <img
+                                    src="{{ image.image.url }}"
+                                    alt="{{ image.alt|default:product.title }}"
+                                >
+                            </button>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="product-information">
+                <div class="product-badges product-detail-badges">
+                    {% if product.is_new %}
+                        <span class="badge badge-new">Новинка</span>
+                    {% endif %}
+
+                    {% if product.is_popular %}
+                        <span class="badge badge-popular">
+                            Популярная модель
+                        </span>
+                    {% endif %}
+
+                    {% if product.discount %}
+                        <span class="badge badge-discount">
+                            Скидка {{ product.discount }}%
+                        </span>
+                    {% endif %}
+                </div>
+
+                <h1>{{ product.title }}</h1>
+
+                {% if product.article %}
+                    <p class="product-article">
+                        Артикул: {{ product.article }}
+                    </p>
+                {% endif %}
+
+                {% if product.short_description %}
+                    <p class="product-lead">
+                        {{ product.short_description }}
+                    </p>
+                {% endif %}
+
+                <div class="detail-price">
+                    {% if product.old_price %}
+                        <del>{{ product.old_price|floatformat:0 }} ₽</del>
+                    {% endif %}
+
+                    <strong>{{ product.price|floatformat:0 }} ₽</strong>
+                </div>
+
+                <div class="quick-features">
+                    {% if product.dimensions %}
+                        <div>
+                            <span>Размеры</span>
+                            <strong>{{ product.dimensions }}</strong>
+                        </div>
+                    {% endif %}
+
+                    {% if product.area %}
+                        <div>
+                            <span>Площадь</span>
+                            <strong>{{ product.area }} м²</strong>
+                        </div>
+                    {% endif %}
+
+                    <div>
+                        <span>Изготовление</span>
+                        <strong>
+                            от {{ product.production_days }} дней
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Гарантия</span>
+                        <strong>
+                            {{ product.warranty_months }} месяцев
+                        </strong>
+                    </div>
+                </div>
+
+                <a
+                    href="{% url 'home' %}#application"
+                    class="button button-full button-large"
+                >
+                    Заказать расчёт
+                </a>
+
+                <p class="detail-note">
+                    Итоговая стоимость зависит от размеров,
+                    материалов, доставки и комплектации.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-muted">
+    <div class="container product-description-grid">
+        <article class="content-card">
+            <h2>Описание</h2>
+
+            {% if product.description %}
+                {{ product.description|linebreaks }}
+            {% else %}
+                <p>
+                    Подробное описание модели скоро будет добавлено.
+                </p>
+            {% endif %}
+
+            {% if product.equipment %}
+                <h3>Комплектация</h3>
+                {{ product.equipment|linebreaks }}
+            {% endif %}
+
+            {% if product.options %}
+                <h3>Дополнительные опции</h3>
+                {{ product.options|linebreaks }}
+            {% endif %}
+        </article>
+
+        <aside class="content-card">
+            <h2>Характеристики</h2>
+
+            <dl class="characteristics">
+                {% if product.product_type %}
+                    <div>
+                        <dt>Тип</dt>
+                        <dd>{{ product.product_type }}</dd>
+                    </div>
+                {% endif %}
+
+                {% if product.shape %}
+                    <div>
+                        <dt>Форма</dt>
+                        <dd>{{ product.shape }}</dd>
+                    </div>
+                {% endif %}
+
+                {% if product.frame_material %}
+                    <div>
+                        <dt>Каркас</dt>
+                        <dd>{{ product.frame_material }}</dd>
+                    </div>
+                {% endif %}
+
+                {% if product.wall_material %}
+                    <div>
+                        <dt>Стены</dt>
+                        <dd>{{ product.wall_material }}</dd>
+                    </div>
+                {% endif %}
+
+                {% if product.floor_material %}
+                    <div>
+                        <dt>Пол</dt>
+                        <dd>{{ product.floor_material }}</dd>
+                    </div>
+                {% endif %}
+
+                {% if product.roof_type %}
+                    <div>
+                        <dt>Тип крыши</dt>
+                        <dd>{{ product.roof_type }}</dd>
+                    </div>
+                {% endif %}
+
+                {% if product.roofing_material %}
+                    <div>
+                        <dt>Кровельный материал</dt>
+                        <dd>{{ product.roofing_material }}</dd>
+                    </div>
+                {% endif %}
+
+                {% if product.foundation_type %}
+                    <div>
+                        <dt>Фундамент</dt>
+                        <dd>{{ product.foundation_type }}</dd>
+                    </div>
+                {% endif %}
+
+                <div>
+                    <dt>Сезонность</dt>
+                    <dd>{{ product.get_season_display }}</dd>
+                </div>
+
+                {% if product.colors %}
+                    <div>
+                        <dt>Цвета</dt>
+                        <dd>{{ product.colors }}</dd>
+                    </div>
+                {% endif %}
+            </dl>
+        </aside>
+    </div>
+</section>
+
+{% if related_products %}
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="section-label">Вам также может подойти</span>
+                <h2>Похожие модели</h2>
+            </div>
+        </div>
+
+        <div class="products-grid">
+            {% for product in related_products %}
+                {% include "components/product_card.html" with product=product %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,276 @@
+@media (max-width: 1150px) {
+    .main-navigation {
+        gap: 15px;
+    }
+
+    .header-phone {
+        display: none;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .advantages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 960px) {
+    .section {
+        padding: 75px 0;
+    }
+
+    .header-inner {
+        min-height: 72px;
+    }
+
+    .menu-button {
+        display: block;
+        margin-left: auto;
+    }
+
+    .main-navigation {
+        position: fixed;
+        top: 72px;
+        right: 0;
+        bottom: 0;
+        display: none;
+        width: min(360px, 90%);
+        padding: 30px;
+        align-items: stretch;
+        flex-direction: column;
+        background: #ffffff;
+        box-shadow: -20px 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .main-navigation.active {
+        display: flex;
+    }
+
+    .main-navigation a {
+        padding: 12px 0;
+        border-bottom: 1px solid #dde3df;
+        font-size: 16px;
+    }
+
+    .header-contacts {
+        display: none;
+    }
+
+    .hero,
+    .hero-grid {
+        min-height: auto;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .hero-content {
+        padding-bottom: 30px;
+    }
+
+    .hero-visual {
+        padding-bottom: 70px;
+        justify-content: flex-start;
+    }
+
+    .hero-card {
+        width: 100%;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-card {
+        min-height: 300px;
+    }
+
+    .projects-preview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .application-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .application-information {
+        position: static;
+    }
+
+    .catalog-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-sidebar {
+        position: static;
+    }
+
+    .product-detail-grid,
+    .product-description-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-information {
+        position: static;
+    }
+
+    .project-card {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 680px) {
+    .container {
+        width: min(calc(100% - 28px), 1240px);
+    }
+
+    .section {
+        padding: 58px 0;
+    }
+
+    h1 {
+        font-size: 39px;
+    }
+
+    h2 {
+        font-size: 31px;
+    }
+
+    .logo-text small {
+        display: none;
+    }
+
+    .hero-content {
+        padding-top: 65px;
+    }
+
+    .hero-content > p {
+        font-size: 17px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions .button {
+        width: 100%;
+    }
+
+    .hero-statistics {
+        margin-top: 45px;
+        flex-wrap: wrap;
+        gap: 25px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
+
+    .products-grid,
+    .products-grid-catalog,
+    .advantages-grid,
+    .projects-preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image {
+        height: 245px;
+    }
+
+    .application-form {
+        padding: 24px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group-full {
+        grid-column: auto;
+    }
+
+    .catalog-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .sorting-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .main-product-image {
+        height: 380px;
+    }
+
+    .product-thumbnails {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .thumbnail-button {
+        height: 70px;
+    }
+
+    .quick-features {
+        grid-template-columns: 1fr;
+    }
+
+    .content-card {
+        padding: 24px;
+    }
+
+    .project-images {
+        min-height: 320px;
+        grid-template-columns: 1fr;
+    }
+
+    .project-images > div {
+        min-height: 260px;
+    }
+
+    .project-card-content {
+        padding: 25px;
+    }
+
+    .project-details li {
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .project-details strong {
+        text-align: left;
+    }
+
+    .cta-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .thanks-card {
+        padding: 35px 22px;
+    }
+
+    .thanks-card h1 {
+        font-size: 34px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+    }
+}

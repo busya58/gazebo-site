@@ -1,0 +1,156 @@
+.site-account-bar {
+    position: relative;
+    z-index: 20;
+    border-top: 1px solid rgb(23 63 50 / 8%);
+    border-bottom: 1px solid rgb(23 63 50 / 12%);
+    background: #ffffff;
+    box-shadow: 0 5px 18px rgb(23 63 50 / 7%);
+}
+
+.site-account-bar__inner {
+    display: flex;
+    min-height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.site-account-caption {
+    color: #5f6c64;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.site-account-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.site-account-user__avatar {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #ffffff;
+    background: #2f6b4d;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.site-account-user__name {
+    color: #173f32;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.site-account-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.site-account-actions form {
+    margin: 0;
+}
+
+.site-account-button {
+    display: inline-flex;
+    min-height: 44px;
+    padding: 10px 18px;
+    border: 1px solid #2f6b4d;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background: #2f6b4d;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.site-account-button:hover {
+    border-color: #24543c;
+    color: #ffffff;
+    background: #24543c;
+    box-shadow: 0 7px 16px rgb(36 84 60 / 20%);
+    transform: translateY(-1px);
+}
+
+.site-account-button:focus-visible {
+    outline: 3px solid rgb(47 107 77 / 25%);
+    outline-offset: 2px;
+}
+
+.site-account-button--secondary {
+    color: #2f6b4d;
+    background: transparent;
+}
+
+.site-account-button--secondary:hover {
+    color: #ffffff;
+    background: #2f6b4d;
+}
+
+.site-account-button--logout {
+    border-color: #d4ddd7;
+    color: #435048;
+    background: #f4f6f4;
+}
+
+.site-account-button--logout:hover {
+    border-color: #173f32;
+    color: #ffffff;
+    background: #173f32;
+}
+
+@media (max-width: 650px) {
+    .site-account-bar__inner {
+        padding-top: 14px;
+        padding-bottom: 14px;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .site-account-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+
+    .site-account-actions form {
+        display: flex;
+    }
+
+    .site-account-actions form .site-account-button {
+        width: 100%;
+    }
+
+    .site-account-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+    .site-account-actions {
+        grid-template-columns: 1fr;
+    }
+}

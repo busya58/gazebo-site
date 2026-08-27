@@ -1,0 +1,134 @@
+.site-account-row {
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.site-account-row__container {
+    display: flex;
+    min-height: 110px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.site-account-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.site-account-form {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+}
+
+.site-account-button {
+    display: inline-flex;
+    min-height: 48px;
+    box-sizing: border-box;
+    padding: 12px 24px;
+    border: 1px solid #347158;
+    border-radius: 9px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    font: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.site-account-button--primary {
+    color: #ffffff;
+    background-color: #347158;
+    border-color: #347158;
+}
+
+.site-account-button--primary:hover {
+    color: #ffffff;
+    background-color: #285c47;
+    border-color: #285c47;
+    box-shadow: 0 5px 14px rgb(40 92 71 / 20%);
+    transform: translateY(-1px);
+}
+
+.site-account-button--outline {
+    color: #347158;
+    background-color: #ffffff;
+    border-color: #347158;
+}
+
+.site-account-button--outline:hover {
+    color: #ffffff;
+    background-color: #347158;
+    border-color: #347158;
+    box-shadow: 0 5px 14px rgb(40 92 71 / 16%);
+    transform: translateY(-1px);
+}
+
+.site-account-button:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+.site-account-button:focus-visible {
+    outline: 3px solid rgb(52 113 88 / 25%);
+    outline-offset: 3px;
+}
+
+.site-account-button__icon {
+    width: 19px;
+    height: 19px;
+    flex: 0 0 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+@media (max-width: 700px) {
+    .site-account-row__container {
+        min-height: 86px;
+        justify-content: center;
+    }
+
+    .site-account-actions {
+        width: 100%;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .site-account-button {
+        min-height: 44px;
+        padding: 11px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 420px) {
+    .site-account-actions {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 12px 0;
+    }
+
+    .site-account-form,
+    .site-account-button {
+        width: 100%;
+    }
+}

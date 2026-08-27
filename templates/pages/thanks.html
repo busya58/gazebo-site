@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Заявка отправлена — БеседкаБ{% endblock %}
+
+{% block content %}
+
+<section class="thanks-section">
+    <div class="container">
+        <div class="thanks-card">
+            <div class="success-icon">✓</div>
+
+            <span class="section-label">Заявка отправлена</span>
+
+            <h1>Спасибо за обращение!</h1>
+
+            <p>
+                Мы получили вашу заявку. Менеджер изучит информацию
+                и свяжется с вами в рабочее время.
+            </p>
+
+            <div class="thanks-actions">
+                <a href="{% url 'home' %}" class="button">
+                    Вернуться на главную
+                </a>
+
+                <a href="{% url 'gazebos' %}" class="button button-outline">
+                    Смотреть каталог
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

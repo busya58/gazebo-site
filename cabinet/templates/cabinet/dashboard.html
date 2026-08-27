@@ -1,0 +1,82 @@
+{% extends "cabinet/base_account.html" %}
+
+{% block title %}
+    Мои заявки
+{% endblock %}
+
+{% block content %}
+<section class="account-page">
+    <div class="container">
+        <div class="page-heading">
+            <div>
+                <p class="page-label">Личный кабинет</p>
+
+                <h1>
+                    Здравствуйте,
+                    {{ request.user.first_name|default:request.user.username }}!
+                </h1>
+
+                <p>
+                    Здесь находятся все отправленные вами заявки.
+                </p>
+            </div>
+
+            <a
+                class="primary-button button-link"
+                href="{% url 'cabinet:application_create' %}"
+            >
+                Отправить заявку
+            </a>
+        </div>
+
+        {% if applications %}
+            <div class="application-list">
+                {% for application in applications %}
+                    <article class="application-card">
+                        <div class="application-card__top">
+                            <span class="application-number">
+                                Заявка №{{ application.pk }}
+                            </span>
+
+                            <span
+                                class="status status-{{ application.status }}"
+                            >
+                                {{ application.get_status_display }}
+                            </span>
+                        </div>
+
+                        <h2>
+                            {{ application.get_project_type_display }}
+                        </h2>
+
+                        <p>
+                            Отправлена:
+                            {{ application.created_at|date:"d.m.Y H:i" }}
+                        </p>
+
+                        <a href="{{ application.get_absolute_url }}">
+                            Подробнее о заявке
+                        </a>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-card">
+                <h2>Заявок пока нет</h2>
+
+                <p>
+                    Отправьте первую заявку на изготовление
+                    беседки, вольера или навеса.
+                </p>
+
+                <a
+                    class="primary-button button-link"
+                    href="{% url 'cabinet:application_create' %}"
+                >
+                    Создать заявку
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

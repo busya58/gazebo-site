@@ -1,0 +1,65 @@
+{% extends "cabinet/base_account.html" %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+<div class="account-page">
+    <div class="container account-layout">
+        <aside class="account-sidebar">
+            <div class="account-user">
+                <div class="account-user__avatar">
+                    {{ request.user.username|first|upper }}
+                </div>
+
+                <div class="account-user__information">
+                    <strong>
+                        {{ request.user.get_full_name|default:request.user.username }}
+                    </strong>
+
+                    {% if request.user.email %}
+                        <span>{{ request.user.email }}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <nav
+                class="account-navigation"
+                aria-label="Меню личного кабинета"
+            >
+                <a href="{% url 'cabinet:dashboard' %}">
+                    Главная кабинета
+                </a>
+
+                                <a href="{% url 'cabinet:application_create' %}">
+                    Новая заявка
+                </a>
+
+                <form
+                    method="post"
+                    action="{% url 'cabinet:logout' %}"
+                >
+                    {% csrf_token %}
+
+                    <button type="submit" class="account-navigation__logout">
+                        Выйти
+                    </button>
+                </form>
+            </nav>
+        </aside>
+
+        <section class="account-content">
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="message message--{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% block account_content %}{% endblock %}
+        </section>
+    </div>
+</div>
+{% endblock %}

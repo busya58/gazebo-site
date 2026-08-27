@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}Наши проекты — БеседкаБ{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="{% url 'home' %}">Главная</a>
+            <span>/</span>
+            <span>Наши проекты</span>
+        </div>
+
+        <h1>Выполненные проекты</h1>
+
+        <p>
+            Примеры изготовленных и установленных конструкций.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="project-filter">
+            <a
+                href="{% url 'projects' %}"
+                class="{% if not request.GET.type %}active{% endif %}"
+            >
+                Все
+            </a>
+
+            <a
+                href="?type=gazebo"
+                class="{% if request.GET.type == 'gazebo' %}active{% endif %}"
+            >
+                Беседки
+            </a>
+
+            <a
+                href="?type=winter_gazebo"
+                class="{% if request.GET.type == 'winter_gazebo' %}active{% endif %}"
+            >
+                Зимние беседки
+            </a>
+
+            <a
+                href="?type=grill_gazebo"
+                class="{% if request.GET.type == 'grill_gazebo' %}active{% endif %}"
+            >
+                С мангалом
+            </a>
+
+            <a
+                href="?type=enclosure"
+                class="{% if request.GET.type == 'enclosure' %}active{% endif %}"
+            >
+                Вольеры
+            </a>
+
+            <a
+                href="?type=winter_enclosure"
+                class="{% if request.GET.type == 'winter_enclosure' %}active{% endif %}"
+            >
+                Зимние вольеры
+            </a>
+        </div>
+
+        {% if projects %}
+            <div class="projects-grid">
+                {% for project in projects %}
+                    <article class="project-card">
+                        <div class="project-images">
+                            {% if project.image_before %}
+                                <div>
+                                    <span>До</span>
+                                    <img
+                                        src="{{ project.image_before.url }}"
+                                        alt="{{ project.title }} — до"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            {% endif %}
+
+                            {% if project.image_after %}
+                                <div>
+                                    <span>После</span>
+                                    <img
+                                        src="{{ project.image_after.url }}"
+                                        alt="{{ project.title }} — после"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            {% else %}
+                                <div class="image-placeholder">
+                                    Фото проекта
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="project-card-content">
+                            <span class="project-type">
+                                {{ project.get_project_type_display }}
+                            </span>
+
+                            <h2>{{ project.title }}</h2>
+
+                            <p>
+                                {{ project.description|truncatechars:230 }}
+                            </p>
+
+                            <ul class="project-details">
+                                {% if project.dimensions %}
+                                    <li>
+                                        <span>Размеры</span>
+                                        <strong>{{ project.dimensions }}</strong>
+                                    </li>
+                                {% endif %}
+
+                                {% if project.materials %}
+                                    <li>
+                                        <span>Материалы</span>
+                                        <strong>{{ project.materials }}</strong>
+                                    </li>
+                                {% endif %}
+
+                                {% if project.installation_location %}
+                                    <li>
+                                        <span>Место установки</span>
+                                        <strong>
+                                            {{ project.installation_location }}
+                                        </strong>
+                                    </li>
+                                {% endif %}
+
+                                <li>
+                                    <span>Срок выполнения</span>
+                                    <strong>
+                                        {{ project.completion_days }} дней
+                                    </strong>
+                                </li>
+                            </ul>
+
+                            {% if project.approximate_price %}
+                                <div class="project-price">
+                                    от {{ project.approximate_price|floatformat:0 }} ₽
+                                </div>
+                            {% endif %}
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <h2>Проекты пока не добавлены</h2>
+                <p>
+                    Добавьте проекты через административную панель.
+                </p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container cta-inner">
+        <div>
+            <h2>Хотите похожий проект?</h2>
+            <p>
+                Подготовим расчёт по вашим размерам и требованиям.
+            </p>
+        </div>
+
+        <a href="{% url 'home' %}#application" class="button button-light">
+            Получить расчёт
+        </a>
+    </div>
+</section>
+
+{% endblock %}

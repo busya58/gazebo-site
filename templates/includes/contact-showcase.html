@@ -1,0 +1,115 @@
+{% load static %}
+
+<section class="contact-showcase" id="contacts">
+    <div class="container">
+        <div class="contact-showcase__card">
+            <div class="contact-showcase__content">
+                <span class="contact-showcase__label">
+                    Свяжитесь с нами
+                </span>
+
+                <h2 class="contact-showcase__title">
+                    Обсудим ваш будущий проект
+                </h2>
+
+                <p class="contact-showcase__description">
+                    Ответим на вопросы, поможем выбрать конструкцию
+                    и бесплатно рассчитаем предварительную стоимость.
+                </p>
+
+                <div class="contact-showcase__items">
+                    <a
+                        class="contact-showcase__item"
+                        href="{{ site_phone_href|default:'tel:+79250559888' }}"
+                    >
+                        <span class="contact-showcase__icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M7.4 3.5 9.8 7a1.5 1.5 0 0 1-.2 1.9L8.2 10.3a14.8 14.8 0 0 0 5.5 5.5l1.4-1.4a1.5 1.5 0 0 1 1.9-.2l3.5 2.4a1.5 1.5 0 0 1 .6 1.7l-.6 2.1a2 2 0 0 1-1.9 1.4C9.5 21.8 2.2 14.5 2.2 5.4A2 2 0 0 1 3.6 3.5l2.1-.6a1.5 1.5 0 0 1 1.7.6Z"/>
+                            </svg>
+                        </span>
+
+                        <span>
+                            <small>Позвоните нам</small>
+                            <strong>
+                                {{ site_phone|default:"+7 (925) 0559888" }}
+                            </strong>
+                        </span>
+                    </a>
+
+                    <a
+                        class="contact-showcase__item"
+                        href="mailto:{{ site_email|default:'info@example.ru' }}"
+                    >
+                        <span class="contact-showcase__icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 5.5h18v13H3z"/>
+                                <path d="m4 7 8 6 8-6"/>
+                            </svg>
+                        </span>
+
+                        <span>
+                            <small>Напишите на почту</small>
+                            <strong>
+                                {{ site_email|default:"info@example.ru" }}
+                            </strong>
+                        </span>
+                    </a>
+
+                    <div class="contact-showcase__item">
+                        <span class="contact-showcase__icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M20 10c0 5.3-8 11-8 11S4 15.3 4 10a8 8 0 1 1 16 0Z"/>
+                                <circle cx="12" cy="10" r="2.5"/>
+                            </svg>
+                        </span>
+
+                        <span>
+                            <small>Работаем по всей России</small>
+                            <strong>
+                                {{ site_address|default:"Москва и Московская область" }}
+                            </strong>
+                        </span>
+                    </div>
+
+                    <div class="contact-showcase__item">
+                        <span class="contact-showcase__icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3.5 2"/>
+                            </svg>
+                        </span>
+
+                        <span>
+                            <small>Время работы</small>
+                            <strong>Ежедневно с 09:00 до 20:00</strong>
+                        </span>
+                    </div>
+                </div>
+
+                <a
+                    class="contact-showcase__button"
+                    href="{{ site_phone_href|default:'tel:+79990000000' }}"
+                >
+                    Получить консультацию
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 12h14M14 7l5 5-5 5"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="contact-showcase__visual">
+                <div class="contact-showcase__decoration"></div>
+
+                <img
+                    class="contact-showcase__phone"
+                    src="{% static 'images/contact-hand-phone.webp' %}"
+                    alt="Мобильная версия сайта на экране смартфона"
+                    loading="lazy"
+                    width="720"
+                    height="720"
+                >
+            </div>
+        </div>
+    </div>
+</section>

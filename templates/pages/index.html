@@ -1,0 +1,502 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Беседки и вольеры на заказ — БеседкаБ
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<section
+    class="hero home-slider"
+    id="homeSlider"
+    data-slider
+    aria-label="Наши изделия"
+>
+    <div class="slider-slides">
+        <article
+            class="slider-slide is-active"
+            style="--slide-image: url('{% static 'images/slider/slide-1.jpg' %}')"
+            data-slide
+        >
+            <div class="slider-overlay"></div>
+
+            <div class="container slider-content">
+                <span class="hero-label">
+                    Производство и монтаж по всей России
+                </span>
+
+                <h1>
+                    Беседки, вольеры и навесы
+                    <span>по индивидуальному проекту</span>
+                </h1>
+
+                <p>
+                    Проектируем, изготавливаем, доставляем
+                    и устанавливаем надёжные конструкции
+                    для частных домов и организаций.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="{% url 'gazebos' %}" class="button">
+                        Смотреть беседки
+                    </a>
+
+                    <a
+                        href="#application"
+                        class="button button-light"
+                    >
+                        Получить расчёт
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article
+            class="slider-slide"
+            style="--slide-image: url('{% static 'images/slider/slide-2.jpg' %}')"
+            data-slide
+        >
+            <div class="slider-overlay"></div>
+
+            <div class="container slider-content">
+                <span class="hero-label">
+                    Комфорт и безопасность питомца
+                </span>
+
+                <h2>
+                    Вольеры на заказ
+                    <span>для круглогодичного использования</span>
+                </h2>
+
+                <p>
+                    Изготовим вольер необходимого размера,
+                    подберём материалы, комплектацию и утепление.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="{% url 'enclosures' %}" class="button">
+                        Выбрать вольер
+                    </a>
+
+                    <a
+                        href="#application"
+                        class="button button-light"
+                    >
+                        Заказать изготовление
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article
+            class="slider-slide"
+            style="--slide-image: url('{% static 'images/slider/slide-3.jpg' %}')"
+            data-slide
+        >
+            <div class="slider-overlay"></div>
+
+            <div class="container slider-content">
+                <span class="hero-label">
+                    Практичные конструкции для участка
+                </span>
+
+                <h2>
+                    Навесы и беседки
+                    <span>с доставкой и установкой</span>
+                </h2>
+
+                <p>
+                    Создадим конструкцию по вашим размерам,
+                    требованиям и особенностям участка.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="{% url 'projects' %}" class="button">
+                        Посмотреть проекты
+                    </a>
+
+                    <a
+                        href="#application"
+                        class="button button-light"
+                    >
+                        Обсудить проект
+                    </a>
+                </div>
+            </div>
+        </article>
+    </div>
+<div class="slider-slides">
+        <article
+            class="slider-slide is-active"
+            style="--slide-image: url('{% static 'images/slider/slide-4.jpg' %}')"
+            data-slide
+        >
+            <div class="slider-overlay"></div>
+
+            <div class="container slider-content">
+                <span class="hero-label">
+                    Производство и монтаж по всей России
+                </span>
+
+                <h1>
+                    Беседки, вольеры и навесы
+                    <span>по индивидуальному проекту</span>
+                </h1>
+
+                <p>
+                    Проектируем, изготавливаем, доставляем
+                    и устанавливаем надёжные конструкции
+                    для частных домов и организаций.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="{% url 'gazebos' %}" class="button">
+                        Смотреть беседки
+                    </a>
+
+                    <a
+                        href="#application"
+                        class="button button-light"
+                    >
+                        Получить расчёт
+                    </a>
+                </div>
+            </div>
+        </article>
+    <div class="container slider-controls">
+        <button
+            class="slider-arrow"
+            type="button"
+            data-slider-previous
+            aria-label="Предыдущая фотография"
+        >
+            ←
+        </button>
+
+        <div
+            class="slider-dots"
+            role="tablist"
+            aria-label="Выбор фотографии"
+        >
+            <button
+                class="slider-dot is-active"
+                type="button"
+                data-slider-dot="0"
+                aria-label="Первая фотография"
+            ></button>
+
+            <button
+                class="slider-dot"
+                type="button"
+                data-slider-dot="1"
+                aria-label="Вторая фотография"
+            ></button>
+
+            <button
+                class="slider-dot"
+                type="button"
+                data-slider-dot="2"
+                aria-label="Третья фотография"
+            ></button>
+        </div>
+
+        <button
+            class="slider-arrow"
+            type="button"
+            data-slider-next
+            aria-label="Следующая фотография"
+        >
+            →
+        </button>
+    </div>
+
+    <div class="container hero-statistics">
+        <div>
+            <strong>15+</strong>
+            <span>лет опыта</span>
+        </div>
+
+        <div>
+            <strong>350+</strong>
+            <span>выполненных проектов</span>
+        </div>
+
+        <div>
+            <strong>Россия</strong>
+            <span>география работы</span>
+        </div>
+
+        <div>
+            <strong>12 месяцев</strong>
+            <span>гарантии</span>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="section-label">Каталог</span>
+                <h2>Выберите подходящую конструкцию</h2>
+            </div>
+        </div>
+
+        <div class="category-grid">
+            <a href="{% url 'gazebos' %}" class="category-card category-gazebo">
+                <div>
+                    <span>Для отдыха на участке</span>
+                    <h3>Беседки</h3>
+                    <p>
+                        Открытые, закрытые, остеклённые
+                        и с мангальной зоной.
+                    </p>
+                    <strong>Перейти в каталог →</strong>
+                </div>
+            </a>
+
+            <a
+                href="{% url 'enclosures' %}"
+                class="category-card category-enclosure"
+            >
+                <div>
+                    <span>Комфорт для питомца</span>
+                    <h3>Вольеры</h3>
+                    <p>
+                        Надёжные конструкции разных размеров
+                        и комплектаций.
+                    </p>
+                    <strong>Перейти в каталог →</strong>
+                </div>
+            </a>
+
+            <a
+                href="{% url 'winter_enclosures' %}"
+                class="category-card category-winter"
+            >
+                <div>
+                    <span>Для круглогодичного содержания</span>
+                    <h3>Зимние вольеры</h3>
+                    <p>
+                        Утеплённые стены, пол, потолок
+                        и защищённый зимник.
+                    </p>
+                    <strong>Перейти в каталог →</strong>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section section-muted">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="section-label">Популярные модели</span>
+                <h2>Чаще всего выбирают</h2>
+            </div>
+
+            <a href="{% url 'gazebos' %}" class="text-link">
+                Смотреть весь каталог →
+            </a>
+        </div>
+
+  {% if popular_products %}
+    <div class="products-grid">
+        {% for product in popular_products %}
+            {% include "components/product_card.html" with product=product %}
+        {% endfor %}
+    </div>
+
+{% elif request.user.is_staff %}
+    <div class="empty-state">
+        <h3>Модели пока не добавлены</h3>
+        <p>
+            Добавьте модели через административную панель
+            и отметьте поле «Популярное».
+        </p>
+
+        <a href="{% url 'admin:index' %}" class="button">
+            Открыть административную панель
+        </a>
+    </div>
+
+{% else %}
+    <div class="empty-state">
+        <h3>Каталог обновляется</h3>
+        <p>Скоро здесь появятся новые модели.</p>
+    </div>
+
+        {% endif %}
+    </div>
+</section>
+        <div class="advantages-grid">
+            <article class="advantage-card">
+                <span class="advantage-number">01</span>
+                <h3>Собственное производство</h3>
+                <p>
+                    Контролируем качество материалов и каждый этап сборки.
+                </p>
+            </article>
+
+            <article class="advantage-card">
+                <span class="advantage-number">02</span>
+                <h3>Индивидуальные размеры</h3>
+                <p>
+                    Адаптируем проект под участок, задачи и бюджет.
+                </p>
+            </article>
+
+            <article class="advantage-card">
+                <span class="advantage-number">03</span>
+                <h3>Доставка и монтаж</h3>
+                <p>
+                    Доставляем конструкцию и устанавливаем её на участке.
+                </p>
+            </article>
+
+            <article class="advantage-card">
+                <span class="advantage-number">04</span>
+                <h3>Гарантия</h3>
+                <p>
+                    Предоставляем гарантию на изготовление и монтаж.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+{% if projects %}
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-heading section-heading-light">
+            <div>
+                <span class="section-label">Портфолио</span>
+                <h2>Выполненные проекты</h2>
+            </div>
+
+            <a href="{% url 'projects' %}" class="text-link text-link-light">
+                Все проекты →
+            </a>
+        </div>
+
+        <div class="projects-preview-grid">
+            {% for project in projects %}
+                <article class="project-preview-card">
+                    <div class="project-preview-image">
+                        {% if project.image_after %}
+                            <img
+                                src="{{ project.image_after.url }}"
+                                alt="{{ project.title }}"
+                                loading="lazy"
+                            >
+                        {% else %}
+                            <div class="image-placeholder">
+                                Фото проекта
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="project-preview-content">
+                        <span>{{ project.get_project_type_display }}</span>
+                        <h3>{{ project.title }}</h3>
+
+                        {% if project.installation_location %}
+                            <p>{{ project.installation_location }}</p>
+                        {% endif %}
+
+                        {% if project.approximate_price %}
+                            <strong>
+                                от {{ project.approximate_price|floatformat:0 }} ₽
+                            </strong>
+                        {% endif %}
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="section application-section" id="application">
+    <div class="container application-grid">
+        <div class="application-information">
+            <span class="section-label">Бесплатный расчёт</span>
+
+            <h2>Получите стоимость вашего проекта</h2>
+
+            <p>
+                Расскажите, какая конструкция вам нужна.
+                Менеджер уточнит детали и подготовит расчёт.
+            </p>
+
+            <ul class="application-benefits">
+                <li>Подберём оптимальные материалы</li>
+                <li>Рассчитаем доставку и установку</li>
+                <li>Предложим несколько вариантов комплектации</li>
+                <li>Ответим в рабочее время</li>
+            </ul>
+        </div>
+
+        <form
+            action="{% url 'application_create' %}"
+            method="post"
+            enctype="multipart/form-data"
+            class="application-form"
+        >
+            {% csrf_token %}
+
+            <h3>Оставить заявку</h3>
+
+            {% if application_form.non_field_errors %}
+                <div class="form-error">
+                    {{ application_form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="form-grid">
+                {% for field in application_form %}
+                    <div class="
+                        form-group
+                        {% if field.name == 'comment' or field.name == 'options' or field.name == 'attachment' or field.name == 'consent' %}
+                            form-group-full
+                        {% endif %}
+                        {% if field.name == 'consent' %}
+                            consent-group
+                        {% endif %}
+                    ">
+                        {% if field.name == "consent" %}
+                            <label class="checkbox-label">
+                                {{ field }}
+                                <span>{{ field.label }}</span>
+                            </label>
+                        {% else %}
+                            {{ field.label_tag }}
+                            {{ field }}
+                        {% endif %}
+
+                        {% if field.help_text %}
+                            <small>{{ field.help_text }}</small>
+                        {% endif %}
+
+                        {% for error in field.errors %}
+                            <span class="field-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="button button-full">
+                Отправить заявку
+            </button>
+
+            <p class="form-note">
+                Нажимая кнопку, вы соглашаетесь на обработку данных.
+            </p>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

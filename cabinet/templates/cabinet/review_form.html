@@ -1,0 +1,351 @@
+{% extends "base.html" %}
+
+{% block title %}Оставить отзыв{% endblock %}
+
+{% block content %}
+
+<style>
+    .review-cabinet {
+        padding: 55px 0 80px;
+        background: #f5f4ed;
+        min-height: 650px;
+    }
+
+    .review-cabinet__container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 30px;
+        align-items: start;
+    }
+
+    .review-sidebar,
+    .review-form-card {
+        background: #ffffff;
+        border: 1px solid #e2e6e1;
+        border-radius: 18px;
+        box-shadow: 0 12px 35px rgba(31, 72, 53, 0.08);
+    }
+
+    .review-sidebar {
+        padding: 25px;
+    }
+
+    .review-user {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding-bottom: 22px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e7e9e5;
+    }
+
+    .review-user__avatar {
+        display: flex;
+        flex: 0 0 48px;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        color: #ffffff;
+        background: #2f7658;
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    .review-user__information {
+        min-width: 0;
+    }
+
+    .review-user__information strong {
+        display: block;
+        margin-bottom: 3px;
+        color: #17221c;
+        font-size: 15px;
+        overflow-wrap: anywhere;
+    }
+
+    .review-user__information span {
+        display: block;
+        color: #6c756f;
+        font-size: 12px;
+        overflow-wrap: anywhere;
+    }
+
+    .review-navigation {
+        display: grid;
+        gap: 8px;
+    }
+
+    .review-navigation a,
+    .review-logout {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 14px;
+        border: 0;
+        border-radius: 9px;
+        color: #263c31;
+        background: #f2f6f3;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.3;
+        text-align: left;
+        text-decoration: none;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .review-navigation a:hover,
+    .review-navigation a.is-active,
+    .review-logout:hover {
+        color: #ffffff;
+        background: #2f7658;
+    }
+
+    .review-navigation form {
+        margin: 0;
+    }
+
+    .review-form-card {
+        padding: 38px;
+    }
+
+    .review-form-card__label {
+        margin: 0 0 8px;
+        color: #2f7658;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .review-form-card h1 {
+        margin: 0 0 12px;
+        color: #16271e;
+        font-size: clamp(28px, 4vw, 42px);
+        line-height: 1.15;
+    }
+
+    .review-form-card__description {
+        max-width: 650px;
+        margin: 0 0 30px;
+        color: #69736c;
+        font-size: 16px;
+        line-height: 1.65;
+    }
+
+    .review-form {
+        display: grid;
+        gap: 22px;
+    }
+
+    .review-field {
+        display: grid;
+        gap: 8px;
+    }
+
+    .review-field label {
+        color: #1e3026;
+        font-size: 15px;
+        font-weight: 800;
+    }
+
+    .review-field input:not([type="checkbox"]):not([type="radio"]),
+    .review-field select,
+    .review-field textarea {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 13px 15px;
+        border: 1px solid #cfd7d1;
+        border-radius: 10px;
+        outline: none;
+        color: #17221c;
+        background: #ffffff;
+        font-family: inherit;
+        font-size: 16px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .review-field textarea {
+        min-height: 170px;
+        resize: vertical;
+    }
+
+    .review-field input:focus,
+    .review-field select:focus,
+    .review-field textarea:focus {
+        border-color: #2f7658;
+        box-shadow: 0 0 0 4px rgba(47, 118, 88, 0.12);
+    }
+
+    .review-field__help {
+        color: #758078;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .review-errors {
+        padding: 12px 15px;
+        border: 1px solid #e5a6a6;
+        border-radius: 8px;
+        color: #9c2828;
+        background: #fff0f0;
+        font-size: 14px;
+    }
+
+    .review-errors ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+    .review-submit {
+        justify-self: start;
+        min-width: 190px;
+        padding: 14px 24px;
+        border: 0;
+        border-radius: 10px;
+        color: #ffffff;
+        background: #2f7658;
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .review-submit:hover {
+        background: #245d45;
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 800px) {
+        .review-cabinet {
+            padding: 30px 0 55px;
+        }
+
+        .review-cabinet__container {
+            grid-template-columns: 1fr;
+        }
+
+        .review-form-card {
+            padding: 25px 20px;
+        }
+
+        .review-navigation {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 520px) {
+        .review-navigation {
+            grid-template-columns: 1fr;
+        }
+
+        .review-submit {
+            width: 100%;
+        }
+    }
+</style>
+
+<section class="review-cabinet">
+    <div class="review-cabinet__container">
+
+        <aside class="review-sidebar">
+            <div class="review-user">
+                <div class="review-user__avatar">
+                    {{ request.user.username|first|upper }}
+                </div>
+
+                <div class="review-user__information">
+                    <strong>
+                        {{ request.user.get_full_name|default:request.user.username }}
+                    </strong>
+
+                    {% if request.user.email %}
+                        <span>{{ request.user.email }}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <nav class="review-navigation" aria-label="Меню кабинета">
+                <a href="{% url 'cabinet:dashboard' %}">
+                    Главная кабинета
+                </a>
+
+                <a href="{% url 'cabinet:application_create' %}">
+                    Новая заявка
+                </a>
+
+                <a
+                    href="{% url 'cabinet:review_create' %}"
+                    class="is-active"
+                >
+                    Оставить отзыв
+                </a>
+
+                <form method="post" action="{% url 'cabinet:logout' %}">
+                    {% csrf_token %}
+
+                    <button class="review-logout" type="submit">
+                        Выйти
+                    </button>
+                </form>
+            </nav>
+        </aside>
+
+        <div class="review-form-card">
+            <p class="review-form-card__label">Ваше мнение</p>
+
+            <h1>Оставить отзыв</h1>
+
+            <p class="review-form-card__description">
+                Расскажите о качестве нашей работы. После проверки ваш
+                отзыв появится на сайте.
+            </p>
+
+            <form method="post" class="review-form">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="review-errors">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                {% for field in form %}
+                    <div class="review-field">
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <div class="review-field__help">
+                                {{ field.help_text }}
+                            </div>
+                        {% endif %}
+
+                        {% if field.errors %}
+                            <div class="review-errors">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <button class="review-submit" type="submit">
+                    Отправить отзыв
+                </button>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

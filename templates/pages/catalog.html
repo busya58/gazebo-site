@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }} — БеседкаБ{% endblock %}
+
+{% block content %}
+
+<section class="catalog-intro">
+    <div class="container catalog-intro__container">
+
+        <div class="catalog-intro__content">
+            <nav class="catalog-intro__breadcrumbs">
+                <a href="{% url 'home' %}">Главная</a>
+                <span>/</span>
+                <span>{{ page_title }}</span>
+            </nav>
+
+            <h1 class="catalog-intro__title">
+                {{ page_title }}
+            </h1>
+
+            <p class="catalog-intro__description">
+                Выберите готовую модель или отправьте заявку на индивидуальное изготовление.
+            </p>
+        </div>
+
+        {% if catalog_type_groups %}
+            <div class="catalog-types" aria-label="Типы изделий">
+                {% for group in catalog_type_groups %}
+                    <div class="catalog-types__column">
+                        <h2 class="catalog-types__title">
+                            {{ group.title }}
+                        </h2>
+
+                        <ul class="catalog-types__list">
+                            {% for item in group.items %}
+                                <li class="catalog-types__item">
+                                    <span class="catalog-types__mark" aria-hidden="true"></span>
+                                    <span>{{ item }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    </div>
+</section>
+
+<section class="section catalog-section">
+    <div class="container catalog-layout">
+
+        <aside class="catalog-sidebar">
+            <form method="get" class="filter-form">
+
+                <div class="filter-header">
+                    <h2>Фильтры</h2>
+                    <a href="{{ request.path }}">Сбросить</a>
+                </div>
+
+                <div class="filter-group">
+                    <label for="catalogSearch">Поиск</label>
+                    <input id="catalogSearch" type="search" name="q" value="{{ request.GET.q }}" placeholder="Название модели">
+                </div>
+
+                <div class="filter-group">
+                    <label for="type">Тип конструкции</label>
+                    <input id="type" type="text" name="type" value="{{ request.GET.type }}" placeholder="Например: закрытая">
+                </div>
+
+                <div class="filter-group">
+                    <label for="shape">Форма</label>
+                    <input id="shape" type="text" name="shape" value="{{ request.GET.shape }}" placeholder="Прямоугольная">
+                </div>
+
+                <div class="filter-group">
+                    <label for="material">Материал</label>
+                    <input id="material" type="text" name="material" value="{{ request.GET.material }}" placeholder="Дерево или металл">
+                </div>
+
+                <div class="filter-group">
+                    <label for="roof">Тип крыши</label>
+                    <input id="roof" type="text" name="roof" value="{{ request.GET.roof }}" placeholder="Двускатная">
+                </div>
+
+                <div class="filter-group">
+                    <label for="season">Сезонность</label>
+                    <select id="season" name="season">
+                        <option value="">Любая</option>
+                        <option value="summer" {% if request.GET.season == "summer" %}selected{% endif %}>Летняя</option>
+                        <option value="all_season" {% if request.GET.season == "all_season" %}selected{% endif %}>Всесезонная</option>
+                        <option value="winter" {% if request.GET.season == "winter" %}selected{% endif %}>Зимняя</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Цена, ₽</label>
+                    <div class="price-inputs">
+                        <input type="number" name="min_price" value="{{ request.GET.min_price }}" placeholder="От" min="0">
+                        <input type="number" name="max_price" value="{{ request.GET.max_price }}" placeholder="До" min="0">
+                    </div>
+                </div>
+
+                <div class="filter-group filter-checkboxes">
+                    {% if kind == "gazebo" %}
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="grill" value="1" {% if request.GET.grill == "1" %}checked{% endif %}>
+                            <span>Мангальная зона</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="glazing" value="1" {% if request.GET.glazing == "1" %}checked{% endif %}>
+                            <span>Остекление</span>
+                        </label>
+                    {% else %}
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="booth" value="1" {% if request.GET.booth == "1" %}checked{% endif %}>
+                            <span>Будка</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="winter_room" value="1" {% if request.GET.winter_room == "1" %}checked{% endif %}>
+                            <span>Зимник</span>
+                        </label>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="button button-full">Применить</button>
+            </form>
+        </aside>
+
+        <div class="catalog-content">
+            <div class="catalog-toolbar">
+                <strong>Найдено моделей: {{ products|length }}</strong>
+                <form method="get" class="sorting-form">
+                    {% for key, value in request.GET.items %}
+                        {% if key != "sort" %}
+                            <input type="hidden" name="{{ key }}" value="{{ value }}">
+                        {% endif %}
+                    {% endfor %}
+                    <label for="sort">Сортировка:</label>
+                    <select id="sort" name="sort" onchange="this.form.submit()">
+                        <option value="popular" {% if request.GET.sort == "popular" %}selected{% endif %}>По популярности</option>
+                        <option value="price_asc" {% if request.GET.sort == "price_asc" %}selected{% endif %}>Сначала дешевле</option>
+                        <option value="price_desc" {% if request.GET.sort == "price_desc" %}selected{% endif %}>Сначала дороже</option>
+                        <option value="new" {% if request.GET.sort == "new" %}selected{% endif %}>Сначала новые</option>
+                    </select>
+                </form>
+            </div>
+
+            {% if products %}
+                <div class="products-grid products-grid-catalog">
+                    {% for product in products %}
+                        {% include "components/product_card.html" with product=product %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <h2>Подходящие модели не найдены</h2>
+                    <p>Измените параметры фильтра или оставьте заявку на индивидуальный проект.</p>
+                    <a href="{{ request.path }}" class="button button-outline">Очистить фильтры</a>
+                    <a href="{% url 'home' %}#application" class="button">Оставить заявку</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

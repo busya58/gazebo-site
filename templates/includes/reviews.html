@@ -1,0 +1,72 @@
+<section class="reviews-section" id="reviews">
+    <div class="container">
+        <div class="reviews-section__heading">
+            <p class="reviews-section__label">Отзывы клиентов</p>
+
+            <h2>Что говорят наши заказчики</h2>
+
+            <div class="reviews-section__action">
+                {% if user.is_authenticated %}
+                    <a
+                        class="reviews-button"
+                        href="{% url 'cabinet:review_create' %}"
+                    >
+                        Оставить отзыв
+                    </a>
+                {% else %}
+                    <a
+                        class="reviews-button"
+                       href="{% url 'cabinet:login' %}?next={% url 'cabinet:review_create' %}" 
+                    >
+                        Войти и оставить отзыв
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if reviews %}
+            <div class="reviews-grid">
+                {% for review in reviews %}
+                    <article class="review-card">
+                        <div class="review-card__top">
+                            <div class="review-card__avatar">
+                                {{ review.user.username|first|upper }}
+                            </div>
+
+                            <div>
+                                <h3>
+                                    {{ review.user.get_full_name|default:review.user.username }}
+                                </h3>
+
+                                <time datetime="{{ review.created_at|date:'Y-m-d' }}">
+                                    {{ review.created_at|date:"d.m.Y" }}
+                                </time>
+                            </div>
+                        </div>
+
+                        <div
+                            class="review-card__rating"
+                            aria-label="Оценка {{ review.rating }} из 5"
+                        >
+                            {% for number in "12345" %}
+                                {% if forloop.counter <= review.rating %}
+                                    <span>★</span>
+                                {% else %}
+                                    <span class="review-card__star--empty">★</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        <p class="review-card__text">
+                            {{ review.text|linebreaksbr }}
+                        </p>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="reviews-section__empty">
+                Отзывы клиентов появятся здесь.
+            </p>
+        {% endif %}
+    </div>
+</section>

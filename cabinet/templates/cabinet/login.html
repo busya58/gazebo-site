@@ -1,0 +1,62 @@
+{% extends "cabinet/base_account.html" %}
+
+{% block title %}
+    Вход в личный кабинет
+{% endblock %}
+
+{% block content %}
+<section class="auth-page">
+    <div class="auth-card">
+        <h1>Вход</h1>
+
+        <p class="auth-description">
+            Введите логин и пароль.
+        </p>
+
+        <form method="post" class="account-form">
+            {% csrf_token %}
+
+            {% if next %}
+                <input
+                    type="hidden"
+                    name="next"
+                    value="{{ next }}"
+                >
+            {% endif %}
+
+            {% if form.non_field_errors %}
+                <div class="form-errors">
+                    Логин или пароль указаны неправильно.
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% for error in field.errors %}
+                        <div class="field-error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="primary-button">
+                Войти
+            </button>
+        </form>
+
+        <p class="auth-link">
+            Нет аккаунта?
+            <a href="{% url 'cabinet:register' %}">
+                Зарегистрироваться
+            </a>
+        </p>
+    </div>
+</section>
+{% endblock %}

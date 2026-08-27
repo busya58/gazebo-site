@@ -1,0 +1,97 @@
+<footer class="site-footer">
+    <div class="container footer-main">
+        <div class="footer-brand">
+            <a href="{% url 'home' %}" class="footer-logo">
+                {{ site_name }}
+            </a>
+
+            <p>{{ site_slogan }}</p>
+
+            <p class="footer-geography">
+                Работаем с заказами по всей России.
+            </p>
+        </div>
+
+        <div>
+            <h3>Каталог</h3>
+
+            <ul class="footer-links">
+                <li>
+                    <a href="{% url 'gazebos' %}">
+                        Беседки на заказ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'enclosures' %}">
+                        Вольеры на заказ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'winter_enclosures' %}">
+                        Зимние вольеры
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'projects' %}">
+                        Выполненные проекты
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Услуги</h3>
+
+            <ul class="footer-links">
+                <li>Изготовление беседок</li>
+                <li>Установка беседок</li>
+                <li>Изготовление вольеров</li>
+                <li>Установка вольеров</li>
+                <li>Навесы на заказ</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Контакты</h3>
+
+            <ul class="footer-links footer-contacts">
+                <li>
+                    <span>Телефон</span>
+                    <a href="tel:{{ site_phone_href }}">
+                        {{ site_phone }}
+                    </a>
+                </li>
+
+                <li>
+                    <span>Электронная почта</span>
+                    <a href="mailto:{{ site_email }}">
+                        {{ site_email }}
+                    </a>
+                </li>
+
+                <li>
+                    <span>Адрес</span>
+                    <strong>{{ site_address }}</strong>
+                </li>
+
+                <li>
+                    <span>География работы</span>
+                    <strong>{{ site_geography }}</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container footer-bottom">
+        <span>
+            © {% now "Y" %} {{ site_name }}
+        </span>
+
+        <span>
+            Изготовление и установка конструкций по всей России
+        </span>
+    </div>
+</footer>

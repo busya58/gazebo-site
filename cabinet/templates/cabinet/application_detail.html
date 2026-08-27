@@ -1,0 +1,67 @@
+{% extends "cabinet/base_account.html" %}
+
+{% block title %}
+    Заявка №{{ application.pk }}
+{% endblock %}
+
+{% block content %}
+<section class="account-page">
+    <div class="container">
+        <a
+            class="back-link"
+            href="{% url 'cabinet:dashboard' %}"
+        >
+            ← Вернуться к заявкам
+        </a>
+
+        <div class="detail-card">
+            <div class="application-card__top">
+                <p class="page-label">
+                    Заявка №{{ application.pk }}
+                </p>
+
+                <span
+                    class="status status-{{ application.status }}"
+                >
+                    {{ application.get_status_display }}
+                </span>
+            </div>
+
+            <h1>
+                {{ application.get_project_type_display }}
+            </h1>
+
+            <dl class="detail-list">
+                <div>
+                    <dt>Клиент</dt>
+                    <dd>{{ application.name }}</dd>
+                </div>
+
+                <div>
+                    <dt>Телефон</dt>
+                    <dd>{{ application.phone }}</dd>
+                </div>
+
+                <div>
+                    <dt>Дата отправки</dt>
+                    <dd>
+                        {{ application.created_at|date:"d.m.Y H:i" }}
+                    </dd>
+                </div>
+
+                <div>
+                    <dt>Статус</dt>
+                    <dd>{{ application.get_status_display }}</dd>
+                </div>
+
+                <div>
+                    <dt>Описание</dt>
+                    <dd>
+                        {{ application.description|default:"Описание не указано."|linebreaksbr }}
+                    </dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+</section>
+{% endblock %}

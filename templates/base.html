@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+            Беседки, вольеры и навесы на заказ по России
+        {% endblock %}
+    </title>
+
+    <meta
+        name="description"
+        content="{% block meta_description %}{{ site_description }}{% endblock %}"
+    >
+
+    <meta
+        name="keywords"
+        content="изготовление беседок, установка беседок, вольеры на заказ, установка вольеров, навесы на заказ, беседки по России, зимние вольеры"
+    >
+
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#173f32">
+
+    <link
+        rel="canonical"
+        href="{% block canonical %}{{ request.build_absolute_uri }}{% endblock %}"
+    >
+
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site_name }}">
+
+    <meta
+        property="og:title"
+        content="{% block og_title %}{{ site_name }}{% endblock %}"
+    >
+
+    <meta
+        property="og:description"
+        content="{{ site_description }}"
+    >
+
+    <meta
+        property="og:url"
+        content="{{ request.build_absolute_uri }}"
+    >
+
+    <meta
+        property="og:image"
+        content="{{ site_url }}{% static 'images/og-cover.jpg' %}"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/responsive.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/redesign.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/account-navigation.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/contact-showcase.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/reviews.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/catalog-types.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'cabinet/css/site-account-buttons.css' %}"
+    >
+
+    {% block extra_css %}{% endblock %}
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HomeAndConstructionBusiness",
+        "name": "{{ site_name|escapejs }}",
+        "description": "{{ site_description|escapejs }}",
+        "url": "{{ site_url|escapejs }}",
+        "telephone": "{{ site_phone_href|escapejs }}",
+        "email": "{{ site_email|escapejs }}",
+        "areaServed": {
+            "@type": "Country",
+            "name": "Россия"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Москва",
+            "addressRegion": "Московская область",
+            "addressCountry": "RU"
+        }
+    }
+    </script>
+</head>
+
+<body>
+    {% include "includes/header.html" %}
+
+    <div class="site-account-row">
+        <div class="container site-account-row__container">
+
+            <div class="site-quick-contacts">
+                <a
+                    class="site-request-button"
+                    href="#application"
+                >
+                    Отправить заявку
+                </a>
+
+                <a
+                    class="site-contact-link"
+                    href="https://t.me/tehnika_service_market24"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Написать в Telegram"
+                >
+                    <span class="site-contact-link__icon">
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M21.7 3.3 18.5 19c-.2 1.1-.9 1.4-1.8.9l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9-8.1c.4-.4-.1-.6-.6-.2L6 12.8 1.2 11.3c-1-.3-1-1 .2-1.5L20 2.7c.9-.3 1.9.2 1.7.6Z"
+                            />
+                        </svg>
+                    </span>
+
+                    <span class="site-contact-link__text">
+                        Telegram
+                    </span>
+                </a>
+
+                <a
+                    class="site-contact-link"
+                    href="https://wa.me/79235542285"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Написать в WhatsApp"
+                >
+                    <span class="site-contact-link__icon">
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M12 2a9.7 9.7 0 0 0-8.3 14.7L2.4 21.6l5-1.3A9.8 9.8 0 1 0 12 2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 19.7Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.7.9c-.2.2-.4.2-.6.1-1.5-.7-2.6-1.8-3.3-3.2-.1-.3 0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6 0-.1 0-.3-.1-.5l-.7-1.6c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.8.8-1.2 1.8-1.1 2.9 0 1.7 1.2 3.4 1.4 3.6 1.6 2.4 3.9 4.1 6.6 4.7.8.3 1.8.3 2.5.1.8-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.2-.2-.4-.3-.7-.4Z"
+                            />
+                        </svg>
+                    </span>
+
+                    <span class="site-contact-link__text">
+                        WhatsApp
+                    </span>
+                </a>
+
+                <a
+                    class="site-contact-link"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Написать в MAX"
+                >
+                    <span
+                        class="site-contact-link__icon site-contact-link__icon--max"
+                    >
+                        <span>M</span>
+                    </span>
+
+                    <span class="site-contact-link__text">
+                        MAX
+                    </span>
+                </a>
+
+                <a
+                    class="site-contact-link"
+                    href="mailto:hh8754905@gmail.com"
+                    aria-label="Написать на электронную почту"
+                >
+                    <span class="site-contact-link__icon">
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M3.5 5h17A2.5 2.5 0 0 1 23 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-17A2.5 2.5 0 0 1 1 16.5v-9A2.5 2.5 0 0 1 3.5 5Zm0 2c-.2 0-.3.1-.4.2L12 13.4l8.9-6.2c-.1-.1-.2-.2-.4-.2h-17Zm17.5 2.4-8.4 5.8a1 1 0 0 1-1.2 0L3 9.4v7.1c0 .3.2.5.5.5h17c.3 0 .5-.2.5-.5V9.4Z"
+                            />
+                        </svg>
+                    </span>
+
+                    <span class="site-contact-link__text">
+                        Почта
+                    </span>
+                </a>
+            </div>
+
+            <div class="site-account-actions">
+                {% if request.user.is_authenticated %}
+                    <a
+                        class="site-account-button site-account-button--primary"
+                        href="{% url 'cabinet:dashboard' %}"
+                    >
+                        <svg
+                            class="site-account-button__icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0"
+                            />
+                        </svg>
+
+                        <span>Личный кабинет</span>
+                    </a>
+
+                    <form
+                        class="site-account-form"
+                        method="post"
+                        action="{% url 'cabinet:logout' %}"
+                    >
+                        {% csrf_token %}
+
+                        <button
+                            class="site-account-button site-account-button--outline"
+                            type="submit"
+                        >
+                            Выйти
+                        </button>
+                    </form>
+                {% else %}
+                    <a
+                        class="site-account-button site-account-button--primary"
+                        href="{% url 'cabinet:login' %}"
+                    >
+                        <svg
+                            class="site-account-button__icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0"
+                            />
+                        </svg>
+
+                        <span>Войти</span>
+                    </a>
+
+                    <a
+                        class="site-account-button site-account-button--outline"
+                        href="{% url 'cabinet:register' %}"
+                    >
+                        Регистрация
+                    </a>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+    {% include "includes/messages.html" %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block advantages_section %}
+        {% include "includes/advantages.html" %}
+    {% endblock %}
+
+    {% block reviews_section %}
+        {% include "includes/reviews.html" %}
+    {% endblock %}
+
+    {% block contact_section %}
+    <div id="application">
+        {% include "includes/contact-showcase.html" %}
+    </div>
+{% endblock %}
+
+    {% include "includes/footer.html" %}
+
+    <script
+        src="{% static 'js/main.js' %}"
+        defer
+    ></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

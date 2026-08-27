@@ -1,0 +1,125 @@
+{% load static %}
+
+<header class="site-header" id="siteHeader">
+    <div class="header-service-bar">
+        <div class="container header-service-bar__inner">
+            <span>
+                Изготовление и монтаж конструкций
+            </span>
+
+            <span>
+                География работы: {{ site_geography }}
+            </span>
+        </div>
+    </div>
+
+    <div class="container header-inner">
+      <a href="{% url 'home' %}" class="logo" aria-label="Беседки и Вольеры РФ">
+    <svg
+        class="logo-icon"
+        viewBox="0 0 100 90"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+    >
+        <path
+            d="M8 38 L50 8 L92 38"
+            fill="none"
+            stroke="#2f6b4f"
+            stroke-width="7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+
+        <path
+            d="M20 38 H80"
+            stroke="#c79545"
+            stroke-width="5"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="M22 38 V75 M50 38 V75 M78 38 V75"
+            stroke="#2f6b4f"
+            stroke-width="6"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="M18 62 H82"
+            stroke="#c79545"
+            stroke-width="4"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="M12 76 H88"
+            stroke="#2f6b4f"
+            stroke-width="7"
+            stroke-linecap="round"
+        />
+    </svg>
+
+    <span class="logo-text">
+        <strong>Беседки и Вольеры РФ</strong>
+        <small>Беседки, вольеры и навесы по всей России</small>
+    </span>
+</a>
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            type="button"
+            aria-label="Открыть меню"
+            aria-controls="mainNavigation"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav
+            class="main-navigation"
+            id="mainNavigation"
+            aria-label="Основная навигация"
+        >
+            <a href="{% url 'home' %}">Главная</a>
+            <a href="{% url 'gazebos' %}">Беседки</a>
+            <a href="{% url 'enclosures' %}">Вольеры</a>
+
+            <a href="{% url 'winter_enclosures' %}">
+                Зимние вольеры
+            </a>
+
+            <a href="{% url 'projects' %}">Проекты</a>
+            <a href="{% url 'home' %}#application">Контакты</a>
+
+            <div class="mobile-navigation-contacts">
+                <a href="tel:{{ site_phone_href }}">
+                    {{ site_phone }}
+                </a>
+
+                <a href="mailto:{{ site_email }}">
+                    {{ site_email }}
+                </a>
+            </div>
+        </nav>
+
+        <div class="header-contacts">
+            <a
+                href="tel:{{ site_phone_href }}"
+                class="header-phone"
+            >
+                <span>Позвонить нам</span>
+                <strong>{{ site_phone }}</strong>
+            </a>
+
+            <a
+                href="{% url 'home' %}#application"
+                class="button button-small"
+            >
+                Рассчитать стоимость
+            </a>
+        </div>
+    </div>
+</header>

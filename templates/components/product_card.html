@@ -1,0 +1,89 @@
+<article class="product-card">
+    <a href="{{ product.get_absolute_url }}" class="product-image">
+        {% if product.main_image %}
+            <img
+                src="{{ product.main_image.image.url }}"
+                alt="{{ product.main_image.alt|default:product.title }}"
+                loading="lazy"
+            >
+        {% else %}
+            <div class="image-placeholder">
+                <span>Фото скоро появится</span>
+            </div>
+        {% endif %}
+
+        <div class="product-badges">
+            {% if product.is_new %}
+                <span class="badge badge-new">Новинка</span>
+            {% endif %}
+
+            {% if product.discount %}
+                <span class="badge badge-discount">
+                    −{{ product.discount }}%
+                </span>
+            {% endif %}
+
+            {% if product.is_popular %}
+                <span class="badge badge-popular">Популярное</span>
+            {% endif %}
+        </div>
+    </a>
+
+    <div class="product-content">
+        <div class="product-category">
+            {{ product.category.name }}
+        </div>
+
+        <h3>
+            <a href="{{ product.get_absolute_url }}">
+                {{ product.title }}
+            </a>
+        </h3>
+
+        {% if product.short_description %}
+            <p class="product-description">
+                {{ product.short_description|truncatechars:115 }}
+            </p>
+        {% endif %}
+
+        <ul class="product-features">
+            {% if product.dimensions %}
+                <li>
+                    <span>Размер:</span>
+                    <strong>{{ product.dimensions }}</strong>
+                </li>
+            {% endif %}
+
+            {% if product.frame_material %}
+                <li>
+                    <span>Каркас:</span>
+                    <strong>{{ product.frame_material }}</strong>
+                </li>
+            {% endif %}
+
+            {% if product.production_days %}
+                <li>
+                    <span>Изготовление:</span>
+                    <strong>от {{ product.production_days }} дней</strong>
+                </li>
+            {% endif %}
+        </ul>
+
+        <div class="product-footer">
+            <div class="product-price">
+                {% if product.old_price %}
+                    <del>{{ product.old_price|floatformat:0 }} ₽</del>
+                {% endif %}
+
+                <strong>от {{ product.price|floatformat:0 }} ₽</strong>
+            </div>
+
+            <a
+                href="{{ product.get_absolute_url }}"
+                class="button button-outline button-small"
+            >
+                Подробнее
+            </a>
+        </div>
+    </div>
+</article>
